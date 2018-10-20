@@ -18,9 +18,21 @@ npm install --global webpack-cli
 
 ## Сборка проекта
 
+
 ```bash
 cd project/
 npm run build
+```
+Обратите внимание в `webpack.config.json` на включенный режим отслеживания изменений и пересборку.
+```json
+module.exports = {
+    ...
+    watch: true,
+    watchOptions: {
+        aggregateTimeout: 300
+    }
+    ...
+};
 ```
 
 ## Проверка работоспособности
