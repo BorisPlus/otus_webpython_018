@@ -39,11 +39,11 @@ module.exports = {
 
 Откройте проектный index.html в браузере
 
-<img src='README.files/img/sreenshots/bug_report_hello.png' title='bug_report_hello'
+<img src='README.files/img/screenshots/bug_report_hello.png' title='bug_report_hello'
     width='200'>
-<img src='README.files/img/sreenshots/bug_report_promt.png' title='bug_report_promt'
+<img src='README.files/img/screenshots/bug_report_promt.png' title='bug_report_promt'
     width='200'>
-<img src='README.files/img/sreenshots/bug_report_thanks.png' title='bug_report_thanks'
+<img src='README.files/img/screenshots/bug_report_thanks.png' title='bug_report_thanks'
     width='200'>
     
 ## Как использовать у себя
