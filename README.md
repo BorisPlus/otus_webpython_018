@@ -74,7 +74,7 @@ module.exports = {
 <script>
     var bugReportAdditionalMessage = 'Патлумачце дадаткова і пакажыце кантактныя дадзеныя, калі хочаце.';
 </script>
-<script src="./dist/bug_report.bundle.js"></script>
+<script src="./bug_report.bundle.js"></script>
 ...
 <!-- BODY --> 
 ...
@@ -90,7 +90,7 @@ module.exports = {
 **Вопрос**: а как у подгруженного класса переопределить значение свойства? Как-то [так](https://github.com/BorisPlus/otus_webpython_018/blob/master/project/example_3.html) у меня не вышло...
 
    ```html
-        <script src="./dist/bug_report.bundle.js"></script>
+        <script src="./bug_report.bundle.js"></script>
         <script>
             BugReport.additionalMessage = 'Give me additional description.';
         </script>
