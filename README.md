@@ -56,8 +56,7 @@ module.exports = {
 
 В вашем HTML-файле создайте соотсветствующие контейнеры (Расстановка контейнеров и их CSS за вами).
 
-Можно [так]("https://github.com/BorisPlus/otus_webpython_018/blob/master/project/index.html"):
-:
+Можно [так](https://github.com/BorisPlus/otus_webpython_018/blob/master/project/index.html):
 
 ```html
 <div id="bug_report_thanks" style="visibility:hidden;">Благодарю Вас!</div>
@@ -67,7 +66,7 @@ module.exports = {
 </div>
 ```
 
-А можно и [так]("https://github.com/BorisPlus/otus_webpython_018/blob/master/project/example_2.html"):
+А можно и [так](https://github.com/BorisPlus/otus_webpython_018/blob/master/project/example_2.html):
 
 ```html
 <!-- HEAD --> 
@@ -88,7 +87,7 @@ module.exports = {
 Во втором случае отсутствует контейнер формы `bug_report_form`, и поэтому он при отправке данных скрыт не будет.
 Здесь так же продемонстрирована возможность замены PROMT-сообщения.
 
-**Вопрос**: а как у подгруженного класса определить значение свойства? Как-то [так]("https://github.com/BorisPlus/otus_webpython_018/blob/master/project/example_3.html") у меня не вышло...
+**Вопрос**: а как у подгруженного класса определить значение свойства? Как-то [так](https://github.com/BorisPlus/otus_webpython_018/blob/master/project/example_3.html) у меня не вышло...
 
    ```html
         <script src="./dist/bug_report.bundle.js"></script>
