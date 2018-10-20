@@ -1,13 +1,13 @@
 # BugReport 
 
-BugReport - библиотека на JS с реализацией простого уведомления, например, об ошибке в тексте
+BugReport - JS-пакет с реализацией простого уведомления, например, об ошибке в тексте
 на сайте.
 
-Пример сборки JS пакета с использованием Webpack
+Проект содержит пример сборки JS-пакета с использованием Webpack.
 
 ## Предварительно для проекта
 
-В терминале (возможно вам понадобятся права _root_, прибегните к `sudo` или `su`)
+В терминале (возможно Вам понадобятся права _root_, прибегните к `sudo` или `su`):
 
 ```bash
 apt-get install -y nodejs
@@ -18,12 +18,13 @@ npm install --global webpack-cli
 
 ## Сборка проекта
 
-
 ```bash
 cd project/
 npm run build
 ```
-Обратите внимание в `webpack.config.json` на включенный режим отслеживания изменений и пересборку.
+
+Обратите внимание в `webpack.config.json` на включенный режим отслеживания изменений и задержку на пересборку.
+
 ```
 module.exports = {
     ...
@@ -89,12 +90,12 @@ module.exports = {
 
 **Вопрос**: а как у подгруженного класса переопределить значение свойства? Как-то [так](https://github.com/BorisPlus/otus_webpython_018/blob/master/project/example_3.html) у меня не вышло...
 
-   ```html
-        <script src="./bug_report.bundle.js"></script>
-        <script>
-            BugReport.additionalMessage = 'Give me additional description.';
-        </script>
-   ```
+```html
+    <script src="./bug_report.bundle.js"></script>
+    <script>
+        BugReport.additionalMessage = 'Give me additional description.';
+    </script>
+```
 
 ## Авторы
 
