@@ -1,5 +1,5 @@
 'use strict;'
-// Just for test Webpack bundling
+//
 import { BugReport } from './bug_report';
 //
 let example_bug_report = new BugReport(
@@ -13,3 +13,5 @@ let my_bug_report = new BugReport(
 );
 // redeclare promptMessage
 my_bug_report.promptMessage = 'Yo, put your contact here, bro...'
+
+export { BugReport };

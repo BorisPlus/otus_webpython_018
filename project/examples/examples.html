@@ -48,7 +48,7 @@
     Имеется контейнер "кнопки", а контейнер "руководства" <b><u>отсутствует</u></b> (специально). После подтверждения пользователем своих действий появится контейнер "благодарности", а контейнер "кнопки" исчезнет. Через 3 сек. всё вернется в исходное состояние: контейнер "Благодарности" скроется, контейнер "кнопки" появится.
     <br>
     <br>
-    Определение самого объекта BugReport происходит внутри <b>текущего</b> HTML-файла.
+    Привязка объекта BugReport происходит внутри <b><u>упакованного</u> пользовательского</b> JS-файла.
 </p>
 
 <div class="example">
@@ -67,7 +67,7 @@
 <h2>Пример №3.</h2>
 
 <p>
-    Совпадает с примером №1. Разве что, определение самого объекта BugReport происходит внутри <b>пользовательского</b> JS-файла.
+    Совпадает с примером №1. Привязка объекта BugReport происходит внутри <b><u>упакованного</u> в модуль</b> JS-файла.
 </p>
 
 <div class="example">
@@ -78,21 +78,33 @@
         If you find an error, select the text and click the button.
     </div>
     <button id="my_bug_report_button">
+        I find error
+    </button>
+</div>
+
+<h2>Пример №4 (базовая реализация c использованием модуля)</h2>
+
+<p>
+    Совпадает с примером №1. Разве что, определение объекта BugReport происходит уже внутри
+    <b><u>стороннего</u></b> JS-файла, стороннего с точки зрения всего остального, упакованного в модуль PackedBugReport.
+</p>
+
+<div class="example">
+    <div id="module_usage_bug_report_thanks" style="visibility:hidden" class="thanks">
+        Благодарю Вас!
+    </div>
+    <div id="module_usage_bug_report_instruction">
+        Если нашли ошибку, выделите текст и нажмите на кнопку.
+    </div>
+    <button id="module_usage_bug_report_button">
         Я нашел ошибку
     </button>
 </div>
 
 <!-- как сказала Анна -->
 
-<script src="../../dist/bug_report.bundle.js"></script>
-<script>
-alert('example_bug_report - within html - START');
-let example_bug_report = new BugReport(
-    name='example',
-    promptMessage='Патлумачце дадаткова і пакажыце кантактныя дадзеныя, калі хочаце.'
-);
-alert('example_bug_report - within html - END');
-</script>
+<script src="../dist/bug_report.bundle.js"></script>
+<script src="./module_usage.bug_report.js"></script>
 
 </body>
 </html>

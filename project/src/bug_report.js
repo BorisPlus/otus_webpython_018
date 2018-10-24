@@ -82,4 +82,4 @@ class BugReport {
 // default BugReport object
 let bug_report = new BugReport();
 
-export {BugReport};
+export { BugReport };

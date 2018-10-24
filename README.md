@@ -1,10 +1,10 @@
 # BugReport (Webpack-сборка)
 
-Допустим имеется JS-пакет [https://github.com/BorisPlus/BugReport](https://github.com/BorisPlus/BugReport)
+Допустим, имеется JS-пакет [https://github.com/BorisPlus/BugReport](https://github.com/BorisPlus/BugReport){:target="_blank"}.
 
 Задача в упаковке его с использованием Webpack.
 
-## Описание сборки
+## Описание процесса сборки модуля с использованием Webpack
 
 ### Предварительно
 
@@ -19,8 +19,8 @@ npm install --global webpack-cli
 
 ### Переработка (портирование) проекта
 
-Можно ничего не делать и запустить сборку самого _bug_report.js_:
-```json
+Можно ничего не делать и запустить сборку исходного _bug_report.js_:
+```html
 module.exports = {
     entry: './src/bug_report',
     output: {
@@ -30,10 +30,11 @@ module.exports = {
     mode: 'production',
 };
 ```
-Понятно, что все работает для [базового примера](https://github.com/BorisPlus/BugReport#базовый-вариант){:target="_blank"}.
 
-Но если необходимо привязать к дополнительной "форме", то:
-* либо дописать соответствующи JS в конец _bug_report.js_
+Понятно, что все заработает для [базового примера](https://github.com/BorisPlus/BugReport#базовый-вариант){:target="_blank"}.
+
+Но если необходимо привязать объект BugReport к дополнительной "форме", то:
+* либо дописать соответствующи код в конец _bug_report.js_
     ```
     let example_bug_report = new BugReport(
         'example',
@@ -46,9 +47,9 @@ module.exports = {
     ```
   и запустить выше указанную пересборку.
   
-* либо его (портировать) немного переработать.
+* либо исходный код (портировать) немного переработать.
 
-Почему нужно переработать. Логично держать "ядро" библиотеки отдельно от места его использования\вызова. Нужно, значит, создать отдельный пользовательский файл `my.bug_report.js` с указанными в прошлом пункте объявлениями объектов. А чтоб пользовательский файл "увидел" файл "ядра", необходимо применить import и export.
+Почему нужно переработать. Логично держать "ядро" библиотеки отдельно от места его использования\вызова. Нужно, значит, создать отдельный файл `my.bug_report.js` с указанными в прошлом пункте объявлениями объектов. А чтоб этот файл "увидел" файл "ядра", необходимо применить import и export.
 
 Перво наперво что нужно сделать, так это объявить, что класс BugReport должен экспортироваться. Добавим прямо в конец `bug_report.js`:
 
@@ -61,6 +62,8 @@ export {BugReport};
 ```html
 import { BugReport } from './bug_report';
 ```
+
+Это все.
 
 ### Сборка проекта
 
@@ -101,13 +104,51 @@ npx webpack --config webpack.config.js --watch
 
 ### Проверка работоспособности
 
-Откройте проектный пример [examples.html](https://github.com/BorisPlus//otus_webpython_018/project/examples/examples.html).
+Откройте проектный пример [examples.html](https://github.com/BorisPlus//otus_webpython_018/project/examples/examples.html){:target="_blank"}..
 
-Поведение идентияно изначальному {:target="_blank"}.
+Поведение идентично изначальному, см. GIF-анимацию:
 
+<kbd><img src='README.files/img/animate/bug_report.gif' title='bug_report.gif'></kbd>
 
-## Как использовать собранный или готовый у себя
+## Для coder-friendly
 
+Если в конфиг `webpack.config.json` в позицию `output` добавить:
+
+```html
+module.exports = {
+    ...
+    output: {
+        ...
+        libraryTarget: 'var',
+        library: 'PackedBugReport'
+        ...
+    },
+    mode: 'production',
+};
+```
+
+то сторонним разработчикам совсем не обязательно пересобирать проект и "зашивать" (как это было сделано с `my.bug_report.js`) свою реализацию в собираемый "модуль". 
+
+Достаточно сделать в `my.bug_report.js` проброс экспорта:
+
+```html
+export { BugReport };
+```
+
+и стороннему разработчику станет возможным делать привязку к своим объектам _BugReport_ (подгружая класс _**PackedBugReport**.BugReport_ внутри HTML кода или же в отдельном своем файле):
+
+```html
+let module_usage_bug_report = new PackedBugReport.BugReport('module_usage');
+```
+
+Это продемонстрировано в "Примере №4" файла [примеров](https://github.com/BorisPlus//otus_webpython_018/project/examples/examples.html){:target="_blank"}, где первые три примера подгружаются из webpack-сборки, а последний - с использованием стороннего (с точки зрения данной webpack-сборки) файла `module_usage.bug_report.js`.
+
+GIF-анимация "Примера №4":
+<kbd><img src='README.files/img/animate/packed_bug_report.gif' title='packed_bug_report.gif'></kbd>
+
+## Вывод
+
+Модульная инкапсуляция и разрешение на импорт только дозволенного - это конечно плюс, но требует опыта, и по отладке в том числе.
 
 ## Авторы
 
