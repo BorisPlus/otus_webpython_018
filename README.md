@@ -1,6 +1,6 @@
 # BugReport (Webpack-сборка)
 
-Допустим, имеется JS-пакет [https://github.com/BorisPlus/BugReport](https://github.com/BorisPlus/BugReport){:target="_blank"}.
+Допустим, имеется JS-пакет <a href="https://github.com/BorisPlus/BugReport" target="_blank">https://github.com/BorisPlus/BugReport</a>.
 
 Задача в упаковке его с использованием Webpack.
 
@@ -31,7 +31,7 @@ module.exports = {
 };
 ```
 
-Понятно, что все заработает для [базового примера](https://github.com/BorisPlus/BugReport#базовый-вариант){:target="_blank"}.
+Понятно, что все заработает для <a href="https://github.com/BorisPlus/BugReport#базовый-вариант" target="_blank">базового примера</a>.
 
 Но если необходимо привязать объект BugReport к дополнительной "форме", то:
 * либо дописать соответствующи код в конец _bug_report.js_
@@ -104,13 +104,13 @@ npx webpack --config webpack.config.js --watch
 
 ### Проверка работоспособности
 
-Откройте проектный пример [examples.html](https://github.com/BorisPlus//otus_webpython_018/project/examples/examples.html){:target="_blank"}..
+Откройте проектный пример <a href="https://github.com/BorisPlus//otus_webpython_018/project/examples/examples.html" target="_blank">examples.html</a>.
 
 Поведение идентично изначальному, см. GIF-анимацию:
 
 <kbd><img src='README.files/img/animate/bug_report.gif' title='bug_report.gif'></kbd>
 
-## Для coder-friendly
+## Coderfriendly-подход
 
 Если в конфиг `webpack.config.json` в позицию `output` добавить:
 
@@ -141,7 +141,7 @@ export { BugReport };
 let module_usage_bug_report = new PackedBugReport.BugReport('module_usage');
 ```
 
-Это продемонстрировано в "Примере №4" файла [примеров](https://github.com/BorisPlus//otus_webpython_018/project/examples/examples.html){:target="_blank"}, где первые три примера подгружаются из webpack-сборки, а последний - с использованием стороннего (с точки зрения данной webpack-сборки) файла `module_usage.bug_report.js`.
+Это продемонстрировано в "Примере №4" файла <a href="https://github.com/BorisPlus/otus_webpython_018/project/examples/examples.html" target="_blank">примеров</a>, где первые три примера подгружаются из webpack-сборки, а последний - с использованием стороннего (с точки зрения данной webpack-сборки) файла `module_usage.bug_report.js`.
 
 GIF-анимация "Примера №4":
 <kbd><img src='README.files/img/animate/packed_bug_report.gif' title='packed_bug_report.gif'></kbd>
