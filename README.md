@@ -105,7 +105,7 @@ npx webpack --config webpack.config.js --watch
 
 ### Проверка работоспособности
 
-Откройте проектный пример <a href="https://github.com/BorisPlus//otus_webpython_018/project/examples/examples.html" target="_blank">examples.html</a>.
+Откройте проектный пример <a href="https://github.com/BorisPlus/otus_webpython_018/blob/master/project/examples/examples.html" target="_blank">examples.html</a>.
 
 Поведение идентично изначальному, см. GIF-анимацию:
 
