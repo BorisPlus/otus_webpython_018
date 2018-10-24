@@ -32,7 +32,7 @@ module.exports = {
 };
 ```
 
-Понятно, что все заработает для <a href="https://github.com/BorisPlus/BugReport#базовый-вариант" target="_blank">базового примера</a>.
+Понятно, что все заработает для <a href="https://github.com/BorisPlus/BugReport#базовый-вариант" target="_blank">базового варианта</a>.
 
 Но если необходимо привязать объект BugReport к дополнительной "форме", то:
 * либо дописать соответствующи код в конец _bug_report.js_
