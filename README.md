@@ -1,6 +1,6 @@
 # BugReport (Webpack-сборка)
 
-Допустим, имеется JS-пакет <a href="https://github.com/BorisPlus/BugReport" target="_blank">https://github.com/BorisPlus/BugReport</a>.
+Допустим, имеется JS-пакет <a href="https://github.com/BorisPlus/BugReport" target="_blank">https://github.com/BorisPlus/BugReport</a> (мдя, почему не работает `<a href="..." target="_blank">...</a>` или `[link](url){:target="_blank"}`).
 
 Задача в упаковке его с использованием Webpack.
 
