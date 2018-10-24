@@ -1,8 +1,8 @@
-# BugReport 
+# BugReport (Webpack-сборка)
 
-BugReport - JS-пакет, чей функционал дает возможность отсылать уведомления пользователями сайта его администрации о наличии ошибки в тексте на сайте.
+Допустим имеется JS-пакет [https://github.com/BorisPlus/BugReport](https://github.com/BorisPlus/BugReport)
 
-Описание содержит пример сборки JS-пакета с использованием Webpack.
+Задача в упаковке его с использованием Webpack.
 
 ## Описание сборки
 
@@ -17,14 +17,62 @@ npm install --global webpack
 npm install --global webpack-cli
 ```
 
-### Сборка проекта
+### Переработка (портирование) проекта
 
-```bash
-cd project/
-npm run build
+Можно ничего не делать и запустить сборку самого _bug_report.js_:
+```json
+module.exports = {
+    entry: './src/bug_report',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bug_report.bundle.js'
+    },
+    mode: 'production',
+};
+```
+Понятно, что все работает для [базового примера](https://github.com/BorisPlus/BugReport#базовый-вариант){:target="_blank"}.
+
+Но если необходимо привязать к дополнительной "форме", то:
+* либо дописать соответствующи JS в конец _bug_report.js_
+    ```
+    let example_bug_report = new BugReport(
+        'example',
+        'Патлумачце дадаткова і пакажыце кантактныя дадзеныя, калі хочаце.'
+    );
+    let my_bug_report = new BugReport(
+        'my',
+        'Leave a comment and contact to contact you if you want.'
+    );
+    ```
+  и запустить выше указанную пересборку.
+  
+* либо его (портировать) немного переработать.
+
+Почему нужно переработать. Логично держать "ядро" библиотеки отдельно от места его использования\вызова. Нужно, значит, создать отдельный пользовательский файл `my.bug_report.js` с указанными в прошлом пункте объявлениями объектов. А чтоб пользовательский файл "увидел" файл "ядра", необходимо применить import и export.
+
+Перво наперво что нужно сделать, так это объявить, что класс BugReport должен экспортироваться. Добавим прямо в конец `bug_report.js`:
+
+```html
+export {BugReport};
 ```
 
-Обратите внимание в `webpack.config.json` на включенный режим отслеживания изменений и задержку на пересборку.
+Теперь в `my.bug_report.js` импортируем:
+
+```html
+import { BugReport } from './bug_report';
+```
+
+### Сборка проекта
+
+При отладке мне нравится использовать режим отслеживания изменений и задержку на пересборку.
+
+Для этого есть `--watch` ключ:
+
+```bash
+npx webpack --config webpack.config.js --watch
+```
+
+или если в `webpack.config.json`:
 
 ```
 module.exports = {
@@ -37,68 +85,29 @@ module.exports = {
 };
 ```
 
+Запуск сборки
+
+```bash
+cd project/
+npm run build
+```
+
+или
+
+```bash
+cd project/
+npx webpack --config webpack.config.js --watch
+```
+
 ### Проверка работоспособности
 
-Откройте проектный index.html в браузере
+Откройте проектный пример [examples.html](https://github.com/BorisPlus//otus_webpython_018/project/examples/examples.html).
 
-<img src='README.files/img/screenshots/bug_report_hello.png' title='bug_report_hello'
-    width='250'>
-<img src='README.files/img/screenshots/bug_report_promt.png' title='bug_report_promt'
-    width='250'>
-<img src='README.files/img/screenshots/bug_report_thanks.png' title='bug_report_thanks'
-    width='250'>
+Поведение идентияно изначальному {:target="_blank"}.
 
-Через 3 секунды форма BugReport появится снова, а благодаственное сообщение пропадет.
 
 ## Как использовать собранный или готовый у себя
 
-Подключите модуль крайним в списке.
-
-```html
-<script src="./bug_report.bundle.js"></script>
-```
-
-В вашем HTML-файле создайте соотсветствующие контейнеры (Расстановка контейнеров и их CSS за вами).
-
-Можно [так](https://github.com/BorisPlus/otus_webpython_018/blob/master/project/index.html):
-
-```html
-<div id="bug_report_thanks" style="visibility:hidden;">Благодарю Вас!</div>
-<div id="bug_report_form">
-    Если нашли ошибку, выделите текст и нажмите на кнопку.
-    <button id="bug_report_button">Я нашел ошибку</button>
-</div>
-```
-
-А можно и [так](https://github.com/BorisPlus/otus_webpython_018/blob/master/project/example_2.html):
-
-```html
-<!-- HEAD --> 
-...
-<script>
-    var bugReportAdditionalMessage = 'Патлумачце дадаткова і пакажыце кантактныя дадзеныя, калі хочаце.';
-</script>
-<script src="./bug_report.bundle.js"></script>
-...
-<!-- BODY --> 
-...
-<div id="bug_report_thanks" style="visibility:hidden;">Дзякуй Вам!</div>
-Калі знайшлі памылку, вылучыце тэкст і націсніце на кнопку.
-<button id="bug_report_button">Я знайшоў памылку</button>
-...
-```
-
-Во втором случае отсутствует контейнер формы `bug_report_form` (текст и кнопка), и поэтому он при отправке данных скрыт не будет.
-Здесь так же продемонстрирована возможность замены PROMT-сообщения.
-
-**Вопрос**: а как у подгруженного класса переопределить значение свойства? Как-то [так](https://github.com/BorisPlus/otus_webpython_018/blob/master/project/example_3.html) у меня не вышло...
-
-```html
-    <script src="./bug_report.bundle.js"></script>
-    <script>
-        BugReport.additionalMessage = 'Give me additional description.';
-    </script>
-```
 
 ## Авторы
 

@@ -1,44 +1,71 @@
-'use strict;'
-// Just for test Webpack bundling
-let version = require('./version');
-//version();
-
-var _bugReportAdditionalMessage = (!(typeof bugReportAdditionalMessage === 'undefined')) ?
-    bugReportAdditionalMessage : 'Поясните дополнительно и укажите контактные данные, если хотите.';
+let _templateIdInstruction = "bug_report_instruction";
+let _templateIdButton = "bug_report_button";
+let _templateIdThanks = "bug_report_thanks";
 
 class BugReport {
-    static get additionalMessage() { return _bugReportAdditionalMessage; }
-    static set additionalMessage(value) { _bugReportAdditionalMessage = value; }
-    static sayThanks(show=true){
-        var bugReportThanksArea = document.getElementById("bug_report_thanks");
-        var bugReportFormArea = document.getElementById("bug_report_form");
-        if (bugReportThanksArea){
-            bugReportThanksArea.style.visibility = show ? 'visible' : 'hidden';
-        }
-        if (bugReportFormArea){
-            bugReportFormArea.style.visibility = show ? 'hidden': 'visible';
-        }
-        if (!show) return;
-        setTimeout(function() { BugReport.sayThanks(false); }, 3000);
+    // static methods
+    static get idInstruction() { return _templateIdInstruction; }
+    static get idButton() { return _templateIdButton; }
+    static get idThanks() { return _templateIdThanks; }
+
+    // make names of containers by templates
+    getInstructionId() { return this.name ? this.name + "_" + BugReport.idInstruction : BugReport.idInstruction; }
+    getButtonId() { return this.name ? this.name + "_" + BugReport.idButton : BugReport.idButton; }
+    getThanksId() { return this.name ? this.name + "_" + BugReport.idThanks : BugReport.idThanks; }
+
+    constructor(name, promptMessage) {
+        this.name = name || "";
+        this.promptMessage = promptMessage || "Оставте комментарий и контакт для связи с Вами, если хотите.";
+        // auto binding
+        this._bind()
     }
-    static getReport(event){
-        var selectedText = window.getSelection().toString();
+
+    // bind BugReport object to containers at page
+    _bind() {
+        let button = document.getElementById(this.getButtonId());
+        if (!button) return;
+        let that = this;
+        button.onclick = function() { that.getReport(); }
+        // button.addEventListener('onclick', function() { that.getReport(); }, false)
+    }
+
+    getReport() {
+        let selectedText = window.getSelection().toString();
         if (!selectedText) return;
-        var message = window.location.href +
-                      '\n\n ' +
-                      selectedText +
-                      '\n\n ' +
-                      BugReport.additionalMessage;
+        var message = window.location.href + "\n\n " + selectedText + "\n\n " + this.promptMessage;
         var userPrompt = prompt(message, "");
         if (userPrompt != null) {
-            BugReport.sayThanks();
-            BugReport.sendReport(message + ':' + userPrompt, true); // honest send: message + user_prompt
+            this.sayThanks();
+            this.sendReport(message + ':' + userPrompt, true); // honest send: message + user_prompt
             return;
         }
+        // I wanna know all attempts
         // force send of uncertain user unprompted message : message + user_message
-        BugReport.sendReport(message, false);
+        this.sendReport(message, false);
     }
-    static sendReport(text, honestMarker){
+
+    sayThanks(show=true) {
+        // hide or swow thanksContainer
+        var thanksContainer = document.getElementById(this.getThanksId());
+        if (thanksContainer){
+            thanksContainer.style.visibility = show ? 'visible' : 'hidden';
+        }
+        // hide or swow instructionContainer
+        var instructionContainer = document.getElementById(this.getInstructionId());
+        if (instructionContainer){
+            instructionContainer.style.visibility = show ? 'hidden': 'visible';
+        }
+        // hide or swow buttonContainer
+        var buttonContainer = document.getElementById(this.getButtonId());
+        if (buttonContainer){
+            buttonContainer.style.visibility = show ? 'hidden': 'visible';
+        }
+        //
+        if (!show) return;
+        var that = this;
+        setTimeout(function() { that.sayThanks(false); }, 3000);
+    }
+    sendReport(text, honestMarker){
         // send realization
         // alert('SEND: ' + text);
         var xhr = new XMLHttpRequest();
@@ -50,16 +77,9 @@ class BugReport {
         }));
         // check OK
     }
-}
-var autoLoad = function() {
-    var button = document.getElementById("bug_report_button");
-    button.onclick = BugReport.getReport;
-}
-if (window.onload) {
-    window.onload = function(){
-        window.onload();
-        autoLoad();
-    }
-} else {
-    window.addEventListener('load', autoLoad, false);
-}
+};
+
+// default BugReport object
+let bug_report = new BugReport();
+
+export {BugReport};

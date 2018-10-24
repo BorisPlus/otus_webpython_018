@@ -1,6 +1,9 @@
 'use strict;'
 
-module.exports = function(){
-    let _version = '1.0.0';
-    alert(_version);
+let _version = '1.0.0';
+
+function get_version(){
+    return _version;
 }
+
+export {get_version}
