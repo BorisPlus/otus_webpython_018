@@ -96,9 +96,7 @@ cd project/
 npm run build
 ```
 
-<kbd>
-
-в случае пересбоки
+а в случае необходимости отладочной автопересборки проекта
 
 ```bash
 cd project/
@@ -111,8 +109,6 @@ npm run build:dev
 cd project/
 npx webpack --config webpack.config.js --watch
 ```
-
-</kbd>
 
 ### Проверка работоспособности
 
