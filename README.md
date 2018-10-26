@@ -95,7 +95,9 @@ module.exports = {
 cd project/
 npm run build
 ```
-<khb>
+
+<kbd>
+
 в случае пересбоки
 
 ```bash
@@ -109,7 +111,8 @@ npm run build:dev
 cd project/
 npx webpack --config webpack.config.js --watch
 ```
-</khb>
+
+</kbd>
 
 ### Проверка работоспособности
 
