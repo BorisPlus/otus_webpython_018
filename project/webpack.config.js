@@ -9,4 +9,8 @@ module.exports = {
         library: 'PackedBugReport'
     },
     mode: 'production',
+    devServer: {
+        open: true,
+        openPage: '/examples/examples.html'
+    }
 };
