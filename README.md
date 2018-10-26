@@ -185,10 +185,11 @@ npm run start:dev
 ```
 ℹ ｢wds｣: Project is running at http://localhost:8080/
 ℹ ｢wds｣: webpack output is served from /
-ℹ ｢wdm｣: Hash: 824dff377fed0766975b
+ℹ ｢wdm｣: wait until bundle finished: //examples/examples.html
+ℹ ｢wdm｣: Hash: 6ecb8aca659466d76bc1
 Version: webpack 4.23.1
-Time: 798ms
-Built at: 2018-10-27 00:10:37
+Time: 1261ms
+Built at: 2018-10-27 00:39:46
                Asset     Size  Chunks             Chunk Names
 bug_report.bundle.js  143 KiB       0  [emitted]  main
 Entrypoint main = bug_report.bundle.js
@@ -206,8 +207,8 @@ Entrypoint main = bug_report.bundle.js
 [16] (webpack)-dev-server/client/overlay.js 3.58 KiB {0} [built]
 [21] (webpack)/hot sync nonrecursive ^\.\/log$ 170 bytes {0} [built]
 [23] (webpack)/hot/emitter.js 75 bytes {0} [built]
-[25] ./src/my.bug_report.js + 1 modules 3.6 KiB {0} [built]
-     | ./src/my.bug_report.js 416 bytes [built]
+[25] ./src/my.bug_report.js + 1 modules 3.63 KiB {0} [built]
+     | ./src/my.bug_report.js 442 bytes [built]
      | ./src/bug_report.js 3.2 KiB [built]
     + 11 hidden modules
 ℹ ｢wdm｣: Compiled successfully.
