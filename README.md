@@ -95,6 +95,13 @@ module.exports = {
 cd project/
 npm run build
 ```
+<khb>
+в случае пересбоки
+
+```bash
+cd project/
+npm run build:dev
+```
 
 или
 
@@ -102,6 +109,7 @@ npm run build
 cd project/
 npx webpack --config webpack.config.js --watch
 ```
+</khb>
 
 ### Проверка работоспособности
 
@@ -150,6 +158,23 @@ GIF-анимация "Примера №4":
 ## Вывод
 
 Модульная инкапсуляция и разрешение на импорт только дозволенного - это конечно плюс, но требует опыта, и по отладке в том числе.
+
+## Факультатив
+
+```bash
+npm install webpack-dev-server --save-dev
+```
+
+package.json
+```json
+    "scripts": {
+        ...
+        "start:dev": "webpack-dev-server",
+        ...
+      }
+    ...
+```
+
 
 ## Авторы
 
