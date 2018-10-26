@@ -11,6 +11,6 @@ module.exports = {
     mode: 'production',
     devServer: {
         open: true,
-        openPage: '/examples/examples.html'
+        openPage: 'examples/examples.html'
     }
 };
