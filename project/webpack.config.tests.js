@@ -1,7 +1,7 @@
 var path = require('path');
 
 let config = {
-    entry: './src/my.bug_report',
+    entry: './src/bug_report.tests.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bug_report.bundle.js',
@@ -15,4 +15,4 @@ let config = {
     }
 };
 
-module.exports = config;
+module.exports = config
